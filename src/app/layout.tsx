@@ -48,7 +48,7 @@ export default function RootLayout({
         geistMonoHeading.variable,
       )}
     >
-      <body>
+      <body >
         <ProviderWrapper>
           <ScrollProgress className="z-60 h-0.5 from-primary via-chart-2 to-chart-1" />
           <SiteCursor />

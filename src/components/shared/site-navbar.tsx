@@ -55,7 +55,7 @@ export function SiteNavbar() {
             className="font-heading text-lg font-semibold tracking-normal"
             aria-label="Home"
           >
-            Rakibul<span className="text-primary">.Portfolio</span>
+            rakibul<span className="text-primary">.dev</span>
           </Link>
 
           <div
