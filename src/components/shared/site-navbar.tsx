@@ -10,8 +10,8 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useGsapReveal } from "../../hooks/use-gsap-reveal";
 import Container from "./container";
-import { useGsapReveal } from "./use-gsap-reveal";
 
 const navItems = [
   { label: "Home", href: "/" },

@@ -9,9 +9,9 @@ import { ArrowDown, ArrowRight, Code2, Network } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useGsapReveal } from "../../hooks/use-gsap-reveal";
 import Container from "./container";
 import Section from "./section";
-import { useGsapReveal } from "./use-gsap-reveal";
 
 const designationTexts = [
   "Full Stack Developer",
