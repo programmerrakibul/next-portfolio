@@ -1,13 +1,17 @@
 "use client";
 
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
+
+gsap.registerPlugin(ScrollTrigger);
 
 type RevealOptions = {
   y?: number;
   duration?: number;
   stagger?: number;
   delay?: number;
+  scrollTrigger?: boolean;
 };
 
 export function useGsapReveal<T extends HTMLElement>({
@@ -15,6 +19,7 @@ export function useGsapReveal<T extends HTMLElement>({
   duration = 0.9,
   stagger = 0.08,
   delay = 0,
+  scrollTrigger,
 }: RevealOptions = {}) {
   const scopeRef = useRef<T>(null);
 
@@ -33,12 +38,18 @@ export function useGsapReveal<T extends HTMLElement>({
           delay,
           stagger,
           ease: "power3.out",
+          ...(scrollTrigger && {
+            scrollTrigger: {
+              trigger: scope,
+              start: "top 82%",
+            },
+          }),
         },
       );
     }, scope);
 
     return () => ctx.revert();
-  }, [delay, duration, stagger, y]);
+  }, [delay, duration, stagger, y, scrollTrigger]);
 
   return scopeRef;
 }

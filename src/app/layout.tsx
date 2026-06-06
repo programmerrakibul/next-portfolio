@@ -1,11 +1,8 @@
 import { cn } from "@/lib/utils";
-import { SiteCursor } from "@/components/shared/site-cursor";
-import { ScrollProgress } from "@/components/ui/scroll-progress";
 import ProviderWrapper from "@/providers/provider-wrapper";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Oxanium } from "next/font/google";
 import "./globals.css";
-import { SiteNavbar } from "@/components/shared/site-navbar";
 
 const geistMonoHeading = Geist_Mono({
   subsets: ["latin"],
@@ -48,13 +45,8 @@ export default function RootLayout({
         geistMonoHeading.variable,
       )}
     >
-      <body >
-        <ProviderWrapper>
-          <ScrollProgress className="z-60 h-0.5 from-primary via-chart-2 to-chart-1" />
-          <SiteCursor />
-          <SiteNavbar />
-          <main className="min-h-dvh">{children}</main>
-        </ProviderWrapper>
+      <body>
+        <ProviderWrapper>{children}</ProviderWrapper>
       </body>
     </html>
   );

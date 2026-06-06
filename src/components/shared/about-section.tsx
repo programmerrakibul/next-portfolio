@@ -37,8 +37,10 @@ import { ShineBorder } from "../ui/shine-border";
 import Container from "./container";
 import Section from "./section";
 
+import { motion } from "motion/react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { useGsapReveal } from "../../hooks/use-gsap-reveal";
 import { Particles } from "../ui/particles";
 
 // Tech stack list with names and SVG icons
@@ -167,16 +169,30 @@ const features = [
   },
 ];
 
+const staggerVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
+
 export function AboutSection() {
   const { resolvedTheme } = useTheme();
   const [color, setColor] = useState("#ffffff");
+  const aboutRef = useGsapReveal<HTMLElement>({
+    y: 30,
+    duration: 1,
+    stagger: 0.15,
+    scrollTrigger: true,
+  });
 
   useEffect(() => {
     setColor(resolvedTheme === "dark" ? "#ffffff" : "#3b82f6");
   }, [resolvedTheme]);
 
   return (
-    <Section className="relative w-full overflow-hidden bg-background py-20 md:py-28 text-foreground isolate">
+    <Section
+      ref={aboutRef}
+      className="relative w-full overflow-hidden bg-background py-20 md:py-28 text-foreground isolate"
+    >
       {/* Background Dots Pattern with radial mask fade */}
       <DotPattern
         width={20}
@@ -193,7 +209,12 @@ export function AboutSection() {
       <Container>
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
           {/* Left Column: Image wrapper with Lens magnification */}
-          <div className="hidden lg:col-span-4 lg:block">
+          <motion.div
+            data-reveal
+            className="hidden lg:col-span-4 lg:block"
+            animate={{ y: [0, -6, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+          >
             <div className="relative group w-full overflow-hidden rounded-2xl border border-border/80 bg-transparent p-4 shadow-xl backdrop-blur-sm transition-all duration-300 hover:shadow-2xl">
               {/* Top reflection shine line */}
               <div className="absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-primary/30 to-transparent" />
@@ -219,10 +240,13 @@ export function AboutSection() {
                 <span>MERN & NEXT.JS</span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: MagicCard Details */}
-          <div className="lg:col-span-8 h-full  relative overflow-hidden">
+          <div
+            data-reveal
+            className="lg:col-span-8 h-full relative overflow-hidden"
+          >
             <Particles
               key={resolvedTheme}
               className="absolute inset-0 z-200"
@@ -240,7 +264,13 @@ export function AboutSection() {
               className="border border-border/60 shadow-lg h-full grid place-items-center rounded-2xl p-6"
             >
               {/* Header profile info */}
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-border/50">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+                className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-border/50"
+              >
                 <div className="flex items-center gap-3">
                   <div className="relative size-12 overflow-hidden rounded-full border-2 border-primary bg-muted">
                     <Image
@@ -277,10 +307,16 @@ export function AboutSection() {
                     </Link>
                   ))}
                 </div>
-              </div>
+              </motion.div>
 
               {/* Core statement */}
-              <div className="py-6">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="py-6"
+              >
                 <h3 className="text-2xl font-bold tracking-tight md:text-3xl text-balance">
                   Passionate about clean code and scalability.
                 </h3>
@@ -290,34 +326,51 @@ export function AboutSection() {
                   component architecture, and optimizing web application
                   performance for real-world reliability.
                 </p>
-              </div>
+              </motion.div>
 
               {/* Sub-values grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-border/50">
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={{
+                  visible: {
+                    transition: { staggerChildren: 0.12, delayChildren: 0.15 },
+                  },
+                }}
+                className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-6 border-t border-border/50"
+              >
                 {features.map((feature) => (
-                  <div
+                  <motion.div
                     key={feature.title}
+                    variants={staggerVariants}
+                    whileHover={{ scale: 1.04, y: -3 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 15 }}
                     className="relative overflow-hidden rounded-xl border border-border/40 bg-background/30 p-4 hover:border-primary/30 transition-colors"
                   >
                     <ShineBorder shineColor={"var(--primary)"} />
-                    <div className="flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <motion.div
+                      className="flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary"
+                      whileHover={{ rotate: [0, -8, 8, 0] }}
+                      transition={{ duration: 0.3 }}
+                    >
                       <feature.icon className="size-4" />
-                    </div>
+                    </motion.div>
                     <h4 className="mt-3 font-semibold text-sm">
                       {feature.title}
                     </h4>
                     <p className="mt-1 text-xs text-muted-foreground leading-normal">
                       {feature.description}
                     </p>
-                  </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </MagicCard>
           </div>
         </div>
 
         {/* Bottom Marquee: Tech stacks icons animation */}
-        <div className="mt-20 w-full relative">
+        <div data-reveal className="mt-20 w-full relative">
           {/* Gradient fade borders */}
           <div className="absolute inset-y-0 left-0 w-12 sm:w-20 bg-linear-to-r from-background to-transparent z-10 pointer-events-none" />
           <div className="absolute inset-y-0 right-0 w-12 sm:w-20 bg-linear-to-l from-background to-transparent z-10 pointer-events-none" />

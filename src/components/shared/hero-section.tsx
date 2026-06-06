@@ -9,9 +9,9 @@ import { ArrowDown, ArrowRight, Code2, Network } from "lucide-react";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useGsapReveal } from "../../hooks/use-gsap-reveal";
 import Container from "./container";
 import Section from "./section";
-import { useGsapReveal } from "./use-gsap-reveal";
 
 const designationTexts = [
   "Full Stack Developer",
@@ -188,7 +188,7 @@ export function HeroSection() {
           href="/projects"
           className="absolute bottom-6 right-4 hidden items-center gap-2 text-sm tracking-[0.25em] text-muted-foreground transition-colors hover:text-foreground md:flex"
         >
-          View Project
+          View Projects
           <ArrowRight className="size-4" />
         </Link>
         <motion.div
