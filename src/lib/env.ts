@@ -1,11 +1,30 @@
 import { z } from "zod";
 
 const serverSchema = z.object({
-  SMTP_HOST: z.string().min(1),
-  SMTP_PORT: z.coerce.number().int().positive(),
-  SMTP_USER: z.string().min(1),
-  SMTP_PASS: z.string().min(1),
-  CONTACT_EMAIL: z.string().email(),
+  GOOGLE_CLIENT_ID: z
+    .string("GOOGLE_CLIENT_ID is required")
+    .trim()
+    .min(1, "GOOGLE_CLIENT_ID is required!"),
+
+  GOOGLE_CLIENT_SECRET: z
+    .string("GOOGLE_CLIENT_SECRET is required")
+    .trim()
+    .min(1, "GOOGLE_CLIENT_SECRET is required!"),
+
+  GOOGLE_REFRESH_TOKEN: z
+    .string("GOOGLE_REFRESH_TOKEN is required")
+    .trim()
+    .min(1, "GOOGLE_REFRESH_TOKEN is required!"),
+
+  EMAIL_FROM_NAME: z
+    .string("EMAIL_FROM_NAME is required")
+    .trim()
+    .min(1, "EMAIL_FROM_NAME is required!"),
+
+  EMAIL_FROM: z
+    .email("EMAIL_FROM is invalid!")
+    .trim()
+    .min(1, "EMAIL_FROM is required!"),
 });
 
 const clientSchema = z.object({
@@ -14,14 +33,17 @@ const clientSchema = z.object({
 
 function parseEnv<T>(schema: z.ZodSchema<T>, env: Record<string, string | undefined>): T {
   const result = schema.safeParse(env);
+
   if (!result.success) {
     const missing = result.error.issues
       .map((i) => i.path.join("."))
       .join(", ");
     console.error(`[env] Missing or invalid environment variables: ${missing}`);
+
     if (typeof window === "undefined") {
       throw new Error(`Invalid environment variables: ${missing}`);
     }
+
     return {} as T;
   }
   return result.data;
