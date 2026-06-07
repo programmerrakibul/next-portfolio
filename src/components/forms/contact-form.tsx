@@ -6,14 +6,14 @@ import {
   FieldError,
   FieldLabel,
 } from "@/components/ui/field";
+import { Input } from "@/components/ui/input";
 import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 import { MagicCard } from "@/components/ui/magic-card";
+import { Textarea } from "@/components/ui/textarea";
 import { contactSchema, type ContactFormData } from "@/lib/validations/contact";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { Input } from "../ui/input";
-import { Textarea } from "../ui/textarea";
 
 type FormField = {
   name: "name" | "subject" | "email" | "message";

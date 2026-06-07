@@ -1,19 +1,22 @@
 "use client";
 
+import Container from "@/components/shared/container";
+import Section from "@/components/shared/section";
 import { DotPattern } from "@/components/ui/dot-pattern";
 import { Lens } from "@/components/ui/lens";
 import { MagicCard } from "@/components/ui/magic-card";
 import { Marquee } from "@/components/ui/marquee";
+import { Particles } from "@/components/ui/particles";
+import { ShineBorder } from "@/components/ui/shine-border";
+import { useGsapReveal } from "@/hooks/use-gsap-reveal";
+import { socialLinks } from "@/lib/constants/client";
 import { cn } from "@/lib/utils";
-import {
-  GithubIcon,
-  Linkedin02Icon,
-  Mail01Icon,
-} from "@hugeicons/core-free-icons";
-import { HugeiconsIcon } from "@hugeicons/react";
 import { Code2, Cpu, Zap } from "lucide-react";
+import { motion } from "motion/react";
+import { useTheme } from "next-themes";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { BiLogoMongodb, BiLogoPostgresql } from "react-icons/bi";
 import { BsTypescript } from "react-icons/bs";
 import {
@@ -33,15 +36,6 @@ import {
   SiVercel,
   SiZod,
 } from "react-icons/si";
-import { ShineBorder } from "../ui/shine-border";
-import Container from "./container";
-import Section from "./section";
-
-import { motion } from "motion/react";
-import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
-import { useGsapReveal } from "../../hooks/use-gsap-reveal";
-import { Particles } from "../ui/particles";
 
 // Tech stack list with names and SVG icons
 const techStack = [
@@ -125,27 +119,6 @@ const techStack = [
     name: "Postman",
     color: "text-[#FF6C37] bg-[#FF6C37]/10 border-[#FF6C37]/20",
     icon: SiPostman,
-  },
-];
-
-const socialLinks = [
-  {
-    name: "GitHub",
-    href: "https://github.com/programmerrakibul",
-    icon: GithubIcon,
-    title: "GitHub",
-  },
-  {
-    name: "LinkedIn",
-    href: "https://linkedin.com",
-    icon: Linkedin02Icon,
-    title: "LinkedIn",
-  },
-  {
-    name: "Email",
-    href: "mailto:contact@programmerrakibul.com",
-    icon: Mail01Icon,
-    title: "Email",
   },
 ];
 
@@ -281,10 +254,10 @@ export function AboutSection() {
                     />
                   </div>
                   <div>
-                    <h2 className="text-lg font-bold tracking-tight">
+                    <h2 className="text-base sm:text-lg font-bold tracking-tight">
                       Md. Rakibul Islam
                     </h2>
-                    <p className="text-xs text-muted-foreground font-medium uppercase tracking-wide">
+                    <p className="text-[10px] sm:text-xs text-muted-foreground font-medium uppercase tracking-wide">
                       MERN & Next.js Developer
                     </p>
                   </div>
@@ -294,16 +267,14 @@ export function AboutSection() {
                 <div className="flex items-center gap-2">
                   {socialLinks.map((link) => (
                     <Link
-                      key={link.name}
+                      key={link.label}
                       href={link.href}
-                      {...(link.name !== "Email" && {
-                        target: "_blank",
-                        rel: "noreferrer",
-                      })}
+                      target="_blank"
+                      rel="noreferrer"
                       className="flex size-9 items-center justify-center rounded-lg border border-border/60 bg-background/50 hover:bg-primary/10 hover:text-primary transition-all"
-                      title={link.title}
+                      title={link.label}
                     >
-                      <HugeiconsIcon icon={link.icon} size={18} />
+                      <link.icon size={18} />
                     </Link>
                   ))}
                 </div>
@@ -317,10 +288,10 @@ export function AboutSection() {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="py-6"
               >
-                <h3 className="text-2xl font-bold tracking-tight md:text-3xl text-balance">
+                <h3 className="text-xl sm:text-2xl font-bold tracking-tight md:text-3xl">
                   Passionate about clean code and scalability.
                 </h3>
-                <p className="mt-4 text-base text-muted-foreground leading-relaxed">
+                <p className="mt-4 text-sm sm:text-base text-muted-foreground leading-relaxed">
                   I thrive on building modern web applications using TypeScript,
                   Next.js, and the MERN stack. I focus on developer experience,
                   component architecture, and optimizing web application

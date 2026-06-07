@@ -1,17 +1,17 @@
 "use client";
 
+import Container from "@/components/shared/container";
+import ResumeButton from "@/components/shared/resume-button";
+import SiteMobileNavbar from "@/components/shared/site-mobile-navbar";
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
+import Logo from "@/components/ui/logo";
+import { useGsapReveal } from "@/hooks/use-gsap-reveal";
 import { useMobile } from "@/hooks/use-mobile";
 import useScroll from "@/hooks/use-scroll";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useGsapReveal } from "../../hooks/use-gsap-reveal";
-import Logo from "../ui/logo";
-import Container from "./container";
-import ResumeButton from "./resume-button";
-import SiteMobileNavbar from "./site-mobile-navbar";
 
 export interface NavItem {
   label: string;
@@ -85,7 +85,7 @@ export function SiteNavbar() {
 
           <div data-reveal className="hidden items-center gap-4 md:flex">
             <ResumeButton />
-            <AnimatedThemeToggler
+            {/* <AnimatedThemeToggler
               variant="circle"
               duration={520}
               className={cn(
@@ -94,7 +94,7 @@ export function SiteNavbar() {
                   ? "border-border/60 bg-background/30 text-foreground hover:bg-muted"
                   : "border-border/60 bg-background/50 text-foreground hover:bg-muted",
               )}
-            />
+            /> */}
           </div>
 
           {isMobile && <SiteMobileNavbar navItems={navItems} />}

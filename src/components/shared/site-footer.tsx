@@ -2,41 +2,19 @@
 
 import Container from "@/components/shared/container";
 import Logo from "@/components/ui/logo";
+import { socialLinks } from "@/lib/constants/client";
+import { TLink } from "@/types/links";
 import Link from "next/link";
-import type { IconType } from "react-icons";
-import { FiArrowUp, FiGithub, FiLinkedin, FiMail } from "react-icons/fi";
+import { FiArrowUp } from "react-icons/fi";
 
-interface FooterLink {
-  label: string;
-  href: string;
-}
-
-const navLinks: FooterLink[] = [
+const navLinks: Omit<TLink, "icon">[] = [
   { label: "Home", href: "/" },
   { label: "Dashboard", href: "/dashboard" },
+  { label: "Skills", href: "/skills" },
   { label: "About", href: "/about" },
-  { label: "Projects", href: "/projects" },
 ];
 
-const socialLinks: (FooterLink & { icon: IconType })[] = [
-  {
-    label: "GitHub",
-    href: "https://github.com/programmerrakibul",
-    icon: FiGithub,
-  },
-  {
-    label: "LinkedIn",
-    href: "https://linkedin.com",
-    icon: FiLinkedin,
-  },
-  {
-    label: "Email",
-    href: "mailto:contact@programmerrakibul.com",
-    icon: FiMail,
-  },
-];
-
-const projectLinks: FooterLink[] = [
+const projectLinks: Omit<TLink, "icon">[] = [
   { label: "All Projects", href: "/projects" },
   {
     label: "GitHub Repos",

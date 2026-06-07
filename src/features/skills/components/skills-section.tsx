@@ -73,14 +73,14 @@ export function SkillsSection() {
     >
       <Container>
         {/* Heading */}
-        <div data-reveal-skill className="mb-14 md:mb-20">
+        <div data-reveal-skill className="mb-14 md:mb-20 space-y-4">
           <p className="text-sm font-medium uppercase tracking-wide text-primary">
             Skills & Expertise
           </p>
-          <h1 className="mt-3 font-heading text-4xl font-semibold md:text-6xl">
+          <h1 className="font-heading text-2xl md:text-3xl font-bold tracking-tight lg:text-4xl xl:text-5xl">
             Tech Stack
           </h1>
-          <p className="mt-4 max-w-2xl text-muted-foreground">
+          <p className="max-w-md text-sm md:text-base lg:text-lg leading-relaxed text-muted-foreground">
             Technologies and tools I use daily to build modern, scalable
             applications.
           </p>
@@ -117,7 +117,7 @@ export function SkillsSection() {
                     }}
                     onClick={() => handleTabChange(tab.id, index)}
                     className={cn(
-                      "relative z-10 shrink-0 rounded-xl px-4 py-2.5 text-left text-sm font-medium transition-colors duration-200 lg:py-3",
+                      "relative z-10 shrink-0 rounded-xl px-1.5 sm:px-4 py-2.5 text-left text-sm font-medium transition-colors duration-200 lg:py-3",
                       activeTab === tab.id
                         ? "text-primary"
                         : "text-muted-foreground hover:text-foreground",

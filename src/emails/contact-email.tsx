@@ -1,3 +1,4 @@
+import type { ContactFormData } from "@/lib/validations/contact";
 import {
   Body,
   Container,
@@ -11,22 +12,19 @@ import {
   Tailwind,
   Text,
 } from "@react-email/components";
-import type { ContactFormData } from "@/lib/validations/contact";
 
-interface ContactEmailProps extends ContactFormData {}
-
-const primary = "#14b8a6";
-const primaryDark = "#0d9488";
-const foreground = "#1a1a2e";
-const mutedForeground = "#64748b";
-const border = "#e2e8f0";
-const background = "#ffffff";
-
-export function ContactEmail({ name, subject, email, message }: ContactEmailProps) {
+export function ContactEmail({
+  name,
+  subject,
+  email,
+  message,
+}: ContactFormData) {
   return (
     <Html>
       <Head />
-      <Preview>New message from {name}: {subject}</Preview>
+      <Preview>
+        New message from {name}: {subject}
+      </Preview>
       <Tailwind>
         <Body className="mx-auto my-auto bg-white font-sans">
           <Container className="mx-auto my-10 max-w-140 rounded-xl border border-solid border-[#e2e8f0] p-8 shadow-sm">

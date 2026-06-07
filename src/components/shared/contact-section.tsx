@@ -1,35 +1,17 @@
 "use client";
 
+import ContactForm from "@/components/forms/contact-form";
+import Container from "@/components/shared/container";
+import Section from "@/components/shared/section";
 import { AnimatedGridPattern } from "@/components/ui/animated-grid-pattern";
+import { useGsapReveal } from "@/hooks/use-gsap-reveal";
+import { socialLinks } from "@/lib/constants/client";
 import { cn } from "@/lib/utils";
-import { motion } from "motion/react";
-import Link from "next/link";
-import { useGsapReveal } from "../../hooks/use-gsap-reveal";
-import Container from "./container";
-import Section from "./section";
-
-import {
-  GithubIcon,
-  Linkedin02Icon,
-  Mail01Icon,
-} from "@hugeicons/core-free-icons";
+import { Mail01Icon } from "@hugeicons/core-free-icons";
 import { HugeiconsIcon } from "@hugeicons/react";
 import { MapPin, Phone } from "lucide-react";
-import ContactForm from "../forms/contact-form";
-
-const socialLinks = [
-  {
-    name: "GitHub",
-    href: "https://github.com/programmerrakibul",
-    icon: GithubIcon,
-  },
-  { name: "LinkedIn", href: "https://linkedin.com", icon: Linkedin02Icon },
-  {
-    name: "Email",
-    href: "mailto:contact@programmerrakibul.com",
-    icon: Mail01Icon,
-  },
-];
+import { motion } from "motion/react";
+import Link from "next/link";
 
 const staggerVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -97,7 +79,7 @@ export function ContactSection() {
             <h2 className="font-heading text-2xl md:text-3xl font-bold tracking-tight lg:text-4xl xl:text-5xl">
               Let&apos;s work together
             </h2>
-            <p className="max-w-md text-xs md:text-sm lg:text-base xl:text-lg leading-relaxed text-muted-foreground">
+            <p className="max-w-md text-sm md:text-base lg:text-lg leading-relaxed text-muted-foreground">
               Have a project in mind or just want to say hi? I&apos;d love to
               hear from you. Drop me a message and I&apos;ll get back as soon as
               possible.
@@ -109,20 +91,20 @@ export function ContactSection() {
                   icon: Mail01Icon,
                   iconType: "hugeicons" as const,
                   label: "Email",
-                  value: "contact@programmerrakibul.com",
-                  href: "mailto:contact@programmerrakibul.com",
+                  value: "rakibul00206@gmail.com",
+                  href: "mailto:rakibul00206@gmail.com",
                 },
                 {
                   icon: Phone,
                   iconType: "lucide" as const,
                   label: "Phone",
-                  value: "+1 (555) 123-4567",
+                  value: "+880 188841-9206",
                 },
                 {
                   icon: MapPin,
                   iconType: "lucide" as const,
                   label: "Location",
-                  value: "Dhaka, Bangladesh",
+                  value: "Rangpur City, Dhaka, Bangladesh",
                 },
               ].map((item) => (
                 <div key={item.label} className="flex items-center gap-3">
@@ -157,16 +139,14 @@ export function ContactSection() {
             <div className="flex items-center gap-3 pt-2">
               {socialLinks.map((link) => (
                 <Link
-                  key={link.name}
+                  key={link.label}
                   href={link.href}
-                  {...(link.name !== "Email" && {
-                    target: "_blank",
-                    rel: "noreferrer",
-                  })}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="flex size-10 items-center justify-center rounded-lg border border-border/60 bg-background/50 text-muted-foreground transition-all hover:border-primary/30 hover:bg-primary/10 hover:text-primary"
-                  title={link.name}
+                  title={link.label}
                 >
-                  <HugeiconsIcon icon={link.icon} size={18} />
+                  <link.icon size={18} />
                 </Link>
               ))}
             </div>
