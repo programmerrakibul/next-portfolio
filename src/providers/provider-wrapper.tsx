@@ -4,8 +4,8 @@ import { SiteCursor } from "@/components/shared/site-cursor";
 import SiteFooter from "@/components/shared/site-footer";
 import { SiteNavbar } from "@/components/shared/site-navbar";
 import { ScrollProgress } from "@/components/ui/scroll-progress";
+import { ThemeProvider } from "@/providers/theme-provider";
 import { Toaster } from "sonner";
-import { ThemeProvider } from "./theme-provider";
 
 const ProviderWrapper = ({ children }: { children: React.ReactNode }) => {
   return (

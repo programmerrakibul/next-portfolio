@@ -1,18 +1,25 @@
-import nodemailer from "nodemailer";
 import { getServerEnv } from "@/lib/env";
+import nodemailer from "nodemailer";
 
 let cachedTransport: nodemailer.Transporter | null = null;
 
 export function getTransport() {
   if (!cachedTransport) {
-    const env = getServerEnv();
+    const {
+      EMAIL_FROM,
+      GOOGLE_CLIENT_ID,
+      GOOGLE_CLIENT_SECRET,
+      GOOGLE_REFRESH_TOKEN,
+    } = getServerEnv();
+
     cachedTransport = nodemailer.createTransport({
-      host: env.SMTP_HOST,
-      port: env.SMTP_PORT,
-      secure: env.SMTP_PORT === 465,
+      service: "gmail",
       auth: {
-        user: env.SMTP_USER,
-        pass: env.SMTP_PASS,
+        type: "OAuth2",
+        user: EMAIL_FROM,
+        clientId: GOOGLE_CLIENT_ID,
+        clientSecret: GOOGLE_CLIENT_SECRET,
+        refreshToken: GOOGLE_REFRESH_TOKEN,
       },
     });
   }

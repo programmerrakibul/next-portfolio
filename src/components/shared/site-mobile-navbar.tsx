@@ -1,12 +1,8 @@
 "use client";
 
-import useScroll from "@/hooks/use-scroll";
-import { cn } from "@/lib/utils";
-import { Menu } from "lucide-react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { AnimatedThemeToggler } from "../ui/animated-theme-toggler";
-import Logo from "../ui/logo";
+import ResumeButton from "@/components/shared/resume-button";
+import { NavItem } from "@/components/shared/site-navbar";
+import Logo from "@/components/ui/logo";
 import {
   Sheet,
   SheetClose,
@@ -14,9 +10,12 @@ import {
   SheetDescription,
   SheetTitle,
   SheetTrigger,
-} from "../ui/sheet";
-import ResumeButton from "./resume-button";
-import { NavItem } from "./site-navbar";
+} from "@/components/ui/sheet";
+import useScroll from "@/hooks/use-scroll";
+import { cn } from "@/lib/utils";
+import { Menu } from "lucide-react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface MobileNavbarProps {
   navItems: NavItem[];
@@ -83,10 +82,10 @@ const SiteMobileNavbar = ({ navItems }: MobileNavbarProps) => {
 
           <div className="mt-auto flex items-center gap-3 pt-4">
             <ResumeButton className="flex-1" />
-            <AnimatedThemeToggler
+            {/* <AnimatedThemeToggler
               duration={520}
               className="inline-flex size-10 items-center justify-center rounded-full border border-border/60"
-            />
+            /> */}
           </div>
         </SheetContent>
       </Sheet>

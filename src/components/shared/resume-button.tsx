@@ -1,7 +1,7 @@
+import { BorderBeam } from "@/components/ui/border-beam";
+import { ShimmerButton } from "@/components/ui/shimmer-button";
 import { cn } from "@/lib/utils";
 import { Download } from "lucide-react";
-import { BorderBeam } from "../ui/border-beam";
-import { ShimmerButton } from "../ui/shimmer-button";
 
 interface ResumeButtonProps {
   className?: string;
