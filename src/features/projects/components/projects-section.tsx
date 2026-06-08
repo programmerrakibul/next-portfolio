@@ -13,8 +13,8 @@ export function ProjectsSection() {
   const pathname = usePathname();
   const projects = useProjects();
   const isProjectsPage = pathname === "/projects";
-  const feturedProjects = projects.filter((project) => project.featured);
-  const data = isProjectsPage ? projects : feturedProjects;
+  const featuredProjects = projects.filter((project) => project.featured);
+  const data = isProjectsPage ? projects : featuredProjects;
   const sectionRef = useGsapReveal<HTMLElement>({
     y: 24,
     duration: 1,

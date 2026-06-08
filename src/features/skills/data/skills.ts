@@ -28,12 +28,19 @@ import {
   SiVercel,
   SiZod,
 } from "react-icons/si";
+import { IoLogoJavascript, IoLogoCss3 } from "react-icons/io5";
 
 export const skillCategories: SkillCategory[] = [
   {
     id: "frontend",
     title: "Frontend",
     skills: [
+      {
+        name: "JavaScript",
+        icon: IoLogoJavascript,
+        color: "text-[#F7DF1E] bg-[#F7DF1E]/10 border-[#F7DF1E]/20",
+        brandColor: "#F7DF1E",
+      },
       {
         name: "TypeScript",
         icon: BsTypescript,
@@ -51,6 +58,12 @@ export const skillCategories: SkillCategory[] = [
         icon: RiReactjsLine,
         color: "text-[#61DAFB] bg-[#61DAFB]/10 border-[#61DAFB]/20",
         brandColor: "#61DAFB",
+      },
+      {
+        name: "Vanilla CSS",
+        icon: IoLogoCss3, 
+        color: "text-[#1572B6] bg-[#1572B6]/10 border-[#1572B6]/20",
+        brandColor: "#1572B6",
       },
       {
         name: "Tailwind CSS",
