@@ -4,18 +4,17 @@ import Container from "@/components/shared/container";
 import Section from "@/components/shared/section";
 import { DotPattern } from "@/components/ui/dot-pattern";
 import { useGsapReveal } from "@/hooks/use-gsap-reveal";
-import type { Project } from "@/types/projects";
+import useProjects from "@/hooks/use-projects";
 import { motion } from "motion/react";
 import { usePathname } from "next/navigation";
 import { ProjectCard } from "./project-card";
 
-interface ProjectsSectionProps {
-  projects: Project[];
-}
-
-export function ProjectsSection({ projects }: ProjectsSectionProps) {
+export function ProjectsSection() {
   const pathname = usePathname();
+  const projects = useProjects();
   const isProjectsPage = pathname === "/projects";
+  const feturedProjects = projects.filter((project) => project.featured);
+  const data = isProjectsPage ? projects : feturedProjects;
   const sectionRef = useGsapReveal<HTMLElement>({
     y: 24,
     duration: 1,
@@ -46,7 +45,9 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
             {isProjectsPage ? "All " : "Featured "}Projects
           </p>
           <h1 className="font-heading text-2xl md:text-3xl font-bold tracking-tight lg:text-4xl xl:text-5xl">
-            {!isProjectsPage ? `Best projects I've experienced` : "Work & Experiments"}
+            {!isProjectsPage
+              ? `Best projects I've experienced`
+              : "Work & Experiments"}
           </h1>
           <p className="max-w-md text-sm md:text-base lg:text-lg leading-relaxed text-muted-foreground">
             {!isProjectsPage
@@ -60,7 +61,7 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
           data-reveal
           className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5"
         >
-          {projects.map((project, i) => (
+          {data.map((project, i) => (
             <ProjectCard key={project.id} project={project} index={i} />
           ))}
         </motion.div>
