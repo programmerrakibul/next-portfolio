@@ -1,6 +1,8 @@
 import type { Metric, SkillCategory } from "@/types/skills";
 import { BsBootstrap, BsTypescript } from "react-icons/bs";
+import { IoLogoCss3, IoLogoJavascript } from "react-icons/io5";
 import {
+  RiBearSmileLine,
   RiNextjsFill,
   RiNodejsLine,
   RiReactjsLine,
@@ -28,7 +30,6 @@ import {
   SiVercel,
   SiZod,
 } from "react-icons/si";
-import { IoLogoJavascript, IoLogoCss3 } from "react-icons/io5";
 
 export const skillCategories: SkillCategory[] = [
   {
@@ -60,8 +61,14 @@ export const skillCategories: SkillCategory[] = [
         brandColor: "#61DAFB",
       },
       {
+        name: "Zustand",
+        icon: RiBearSmileLine,
+        color: "text-[#45362B] bg-[#45362B]/10 border-[#45362B]/20",
+        brandColor: "#45362B",
+      },
+      {
         name: "Vanilla CSS",
-        icon: IoLogoCss3, 
+        icon: IoLogoCss3,
         color: "text-[#1572B6] bg-[#1572B6]/10 border-[#1572B6]/20",
         brandColor: "#1572B6",
       },

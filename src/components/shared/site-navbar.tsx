@@ -3,7 +3,7 @@
 import Container from "@/components/shared/container";
 import ResumeButton from "@/components/shared/resume-button";
 import SiteMobileNavbar from "@/components/shared/site-mobile-navbar";
-import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
+// import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import Logo from "@/components/ui/logo";
 import { useGsapReveal } from "@/hooks/use-gsap-reveal";
 import { useMobile } from "@/hooks/use-mobile";
