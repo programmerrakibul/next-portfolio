@@ -8,7 +8,12 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ShineBorder } from "@/components/ui/shine-border";
-import { cn } from "@/lib/utils";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import { cn, getInitials } from "@/lib/utils";
 import type { Project } from "@/types/projects";
 import { motion, useMotionValue, useSpring, useTransform } from "motion/react";
 import Image from "next/image";
@@ -58,6 +63,8 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
     mouseY.set(0);
   };
 
+  const { title, description, photoUrl, liveUrl, repoUrl, stacks } = project;
+
   return (
     <motion.div
       data-reveal
@@ -84,10 +91,10 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           duration={12}
         />
         <div className="relative aspect-3/2 h-40 w-full overflow-hidden rounded-t-2xl bg-linear-to-br from-primary/20 via-primary/10 to-transparent">
-          {project.photoUrl ? (
+          {photoUrl ? (
             <Image
-              src={project.photoUrl}
-              alt={project.title}
+              src={photoUrl}
+              alt={title}
               width={320}
               height={240}
               className="size-full object-cover"
@@ -96,7 +103,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
           ) : (
             <div className="flex size-full items-center justify-center">
               <span className="text-4xl font-bold text-primary/30">
-                {project.title.charAt(0)}
+                {getInitials(title)}
               </span>
             </div>
           )}
@@ -104,15 +111,32 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
 
         <div className="py-6 space-y-3">
           <CardHeader>
-            <CardTitle>{project.title}</CardTitle>
-            <p className="line-clamp-2 text-muted-foreground">
-              {project.description}
-            </p>
+            <CardTitle>
+              <Tooltip>
+                <TooltipTrigger>
+                  <h5 className="line-clamp-1">{title}</h5>
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>{title}</p>
+                </TooltipContent>
+              </Tooltip>
+            </CardTitle>
+
+            <Tooltip>
+              <TooltipTrigger>
+                <p className="line-clamp-2 text-muted-foreground text-start">
+                  {description}
+                </p>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{description}</p>
+              </TooltipContent>
+            </Tooltip>
           </CardHeader>
 
           <CardContent>
             <div className="flex flex-wrap gap-1.5">
-              {project.stacks.map((stack) => (
+              {stacks.map((stack) => (
                 <span
                   key={stack}
                   className="rounded-md bg-primary/15 px-2 py-0.5 text-xs font-medium text-primary-foreground/50"
@@ -127,12 +151,12 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             {[
               {
                 icon: FiExternalLink,
-                href: project.liveUrl,
+                href: liveUrl,
                 label: "Live",
               },
               {
                 icon: FiGithub,
-                href: project.repoUrl,
+                href: repoUrl,
                 label: "Repo",
               },
             ].map(({ icon: Icon, href, label }) => (
