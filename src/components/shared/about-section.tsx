@@ -150,6 +150,8 @@ const staggerVariants = {
 export function AboutSection() {
   const { resolvedTheme } = useTheme();
   const [color, setColor] = useState("#ffffff");
+  const imageUrl =
+    "https://res.cloudinary.com/dqh5dajig/image/upload/v1781289861/retouch-2025062610040734-1_mzifae.png";
   const aboutRef = useGsapReveal<HTMLElement>({
     y: 30,
     duration: 1,
@@ -196,7 +198,7 @@ export function AboutSection() {
               <Lens zoomFactor={1.35} lensSize={150}>
                 <div className="relative w-full aspect-4/5 overflow-hidden rounded-xl bg-muted">
                   <Image
-                    src="https://res.cloudinary.com/dqh5dajig/image/upload/v1778164294/snap_order/users/ett1sls7ny5ajgqqh198.jpg"
+                    src={imageUrl}
                     alt="Md. Rakibul Islam"
                     fill
                     sizes="(max-w-768px) 100vw, 380px"
@@ -247,7 +249,7 @@ export function AboutSection() {
                 <div className="flex items-center gap-3">
                   <div className="relative size-12 overflow-hidden rounded-full border-2 border-primary bg-muted">
                     <Image
-                      src="https://res.cloudinary.com/dqh5dajig/image/upload/v1778164294/snap_order/users/ett1sls7ny5ajgqqh198.jpg"
+                      src={imageUrl}
                       alt="Md. Rakibul Islam avatar"
                       fill
                       className="object-cover"

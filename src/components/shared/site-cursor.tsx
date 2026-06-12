@@ -30,7 +30,7 @@ export function SiteCursor() {
   }, []);
 
   return (
-    <Pointer>
+    <Pointer className="pointer-events-none z-70">
       <div
         className={`relative size-7 rounded-full border border-primary/80 bg-primary/15 shadow-[0_0_28px_color-mix(in_oklch,var(--primary),transparent_30%)] backdrop-blur transition-opacity duration-200 ${
           isHoveringInteractive ? "opacity-0" : "opacity-100"
